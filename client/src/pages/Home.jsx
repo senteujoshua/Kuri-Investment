@@ -13,7 +13,7 @@ function Home() {
 
       <section className="section">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', alignItems: 'start' }}>
+          <div className="grid-2-col-xl">
             <div>
               <h2 className="section-title">
                 Calculate Your <span className="section-accent">Materials</span>

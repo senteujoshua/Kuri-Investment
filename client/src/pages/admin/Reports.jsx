@@ -55,16 +55,13 @@ function Reports() {
         </div>
 
         {/* Controls */}
-        <div style={{
+        <div className="flex-wrap-gap" style={{
           background: 'var(--color-dark-2)',
           border: '1px solid var(--color-dark-3)',
           borderRadius: 'var(--radius)',
           padding: '20px',
           marginBottom: '24px',
-          display: 'flex',
           alignItems: 'center',
-          gap: '16px',
-          flexWrap: 'wrap',
         }}>
           <div>
             <label style={{ display: 'block', color: 'var(--color-gray)', fontSize: '0.85rem', marginBottom: '4px' }}>
@@ -139,7 +136,7 @@ function Reports() {
             </div>
 
             {/* Orders by Status */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '24px' }}>
+            <div className="grid-2-col-lg" style={{ marginBottom: '24px' }}>
               <div style={{
                 background: 'var(--color-dark-2)',
                 border: '1px solid var(--color-dark-3)',

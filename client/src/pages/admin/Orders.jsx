@@ -58,7 +58,7 @@ function AdminOrders() {
       <div className="admin-content">
         <div className="admin-header">
           <h1>Orders</h1>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div className="flex-wrap-gap">
             {['', 'pending', 'confirmed', 'processing', 'delivered', 'cancelled'].map((status) => (
               <button
                 key={status}
@@ -84,7 +84,7 @@ function AdminOrders() {
               <button className="btn btn-sm btn-secondary" onClick={() => setSelectedOrder(null)}>Close</button>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+            <div className="grid-2-col" style={{ gap: '20px', marginBottom: '20px' }}>
               <div>
                 <p style={{ color: 'var(--color-gray)', fontSize: '0.85rem' }}>Customer</p>
                 <p>{selectedOrder.customer_name}</p>
@@ -123,12 +123,12 @@ function AdminOrders() {
               </div>
             )}
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="flex-wrap-gap" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
                 <span style={{ color: 'var(--color-gray)' }}>Total: </span>
                 <strong style={{ color: 'var(--color-orange)', fontSize: '1.2rem' }}>${selectedOrder.total_cost.toFixed(2)}</strong>
               </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
+              <div className="flex-wrap-gap">
                 {['pending', 'confirmed', 'processing', 'delivered', 'cancelled'].map((s) => (
                   <button
                     key={s}

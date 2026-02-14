@@ -1768,6 +1768,117 @@ tbody tr:hover {
   .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
 
+/* ===== Responsive Utility Grids ===== */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-2-col-lg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.grid-2-col-xl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.flex-wrap-gap {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .grid-2-col,
+  .grid-2-col-lg,
+  .grid-2-col-xl {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-2-col,
+  .grid-2-col-lg {
+    gap: 12px;
+  }
+}
+
+/* ===== Mobile filter sidebar improvements ===== */
+@media (max-width: 768px) {
+  .filter-sidebar {
+    padding: 16px;
+  }
+
+  .filter-sidebar h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .filter-options {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .filter-option {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    border: 1px solid var(--color-dark-3);
+    border-radius: 20px;
+  }
+
+  .filter-option.active {
+    border-left: none;
+    border-color: var(--color-orange);
+  }
+
+  .products-page .page-header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* ===== Admin mobile extras ===== */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    flex-wrap: nowrap;
+  }
+
+  .admin-sidebar::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-sidebar {
+    padding: 12px;
+  }
+
+  .filter-option {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
+
+  .filter-group {
+    margin-bottom: 16px;
+  }
+
+  .filter-group label {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+
+  .products-grid {
+    gap: 12px;
+  }
+}
+
 /* ===== Selection & Scrollbar ===== */
 ::selection {
   background: rgba(245, 166, 35, 0.3);
