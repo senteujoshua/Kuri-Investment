@@ -1,0 +1,19 @@
+{
+  "name": "kuri-investments-server",
+  "version": "1.0.0",
+  "description": "Kuri Investments B2B Quarry eCommerce API",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "seed": "node db/seed.js"
+  },
+  "dependencies": {
+    "sql.js": "^1.11.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "nodemailer": "^6.9.16"
+  }
+}
