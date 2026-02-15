@@ -340,7 +340,7 @@ function AdminProducts() {
           <p style={{ color: 'var(--color-gray)' }}>Loading products...</p>
         ) : products.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">{'\u{1F4E6}'}</div>
+            <div className="empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-gray)' }}><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" /></svg></div>
             <h3>No products yet</h3>
             <p>Click &quot;Add Product&quot; to create your first product.</p>
           </div>
@@ -372,7 +372,7 @@ function AdminProducts() {
                           borderRadius: '6px', border: '1px solid var(--color-dark-3)',
                         }} />
                       ) : (
-                        <span style={{ fontSize: '1.5rem' }}>{'\u26F0\uFE0F'}</span>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-gray)' }}><path d="M2 20h20" /><path d="M5 20V8l7-5 7 5v12" /><path d="M9 20v-4h6v4" /></svg>
                       )}
                     </td>
                     <td>{product.name}</td>

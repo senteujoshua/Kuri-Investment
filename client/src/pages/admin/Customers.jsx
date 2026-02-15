@@ -51,7 +51,7 @@ function Customers() {
           <p style={{ color: 'var(--color-gray)' }}>Loading customers...</p>
         ) : customers.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">{'\u{1F465}'}</div>
+            <div className="empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-gray)' }}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></div>
             <h3>No customers yet</h3>
             <p>Customer data will appear here after orders are placed.</p>
           </div>
