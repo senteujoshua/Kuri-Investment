@@ -32,12 +32,13 @@ function Home() {
               </p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
-                  'Consistent quality aggregates from our own quarry',
-                  'Competitive pricing with transparent delivery costs',
-                  'Same-day delivery within Harare',
+                  'Consistent quality aggregates from our own quarry in Kigango, Nyeri',
+                  'Competitive pricing in KES with transparent delivery costs',
+                  'Same-day delivery within Nyeri and Central Kenya',
+                  'Nationwide delivery across Kenya including Nairobi, Mombasa, and Kisumu',
                   'Flexible order sizes from 1 ton to full truckloads',
-                  'Dedicated customer support via WhatsApp',
-                  'Trusted by major construction companies',
+                  'Dedicated customer support via WhatsApp and phone',
+                  'Over 15 years of experience serving Kenyan builders',
                 ].map((item, idx) => (
                   <li key={idx} style={{
                     display: 'flex',

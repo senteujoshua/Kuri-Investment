@@ -103,7 +103,7 @@ function Dashboard() {
           </div>
           <div className="stat-card">
             <div className="stat-label">Total Revenue</div>
-            <div className="stat-value">${(stats?.totalRevenue || 0).toFixed(0)}</div>
+            <div className="stat-value">KES {(stats?.totalRevenue || 0).toLocaleString()}</div>
           </div>
           <div className="stat-card">
             <div className="stat-label">Pending Orders</div>
@@ -139,7 +139,7 @@ function Dashboard() {
                     <tr key={order.id}>
                       <td>#{order.id}</td>
                       <td>{order.customer_name}</td>
-                      <td>${order.total_cost.toFixed(2)}</td>
+                      <td>KES {order.total_cost.toLocaleString()}</td>
                       <td><span className={`badge badge-${order.status}`}>{order.status}</span></td>
                       <td>{new Date(order.created_at).toLocaleDateString()}</td>
                     </tr>

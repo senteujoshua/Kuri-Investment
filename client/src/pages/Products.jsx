@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../utils/api';
 
-const SIZES = ['All', '10mm', '20mm', '40mm', '100mm+', 'Dust', 'Fine', 'Coarse', 'Mixed'];
-const USE_CASES = ['All', 'Foundation', 'Road', 'Slab', 'Finishing', 'Paving', 'Leveling', 'Drainage', 'Landscaping', 'Concrete', 'Retaining Walls'];
+const SIZES = ['All', '10mm', '20mm', '50mm', 'Dust', 'Mixed'];
+const USE_CASES = ['All', 'Foundation', 'Concrete', 'Road', 'Slab', 'Drainage', 'Landscaping', 'Backfill', 'Paving', 'Leveling'];
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -41,7 +41,7 @@ function Products() {
         <div className="page-header">
           <h1>Our <span className="section-accent">Products</span></h1>
           <p style={{ color: 'var(--color-gray)' }}>
-            Browse our full range of quarry aggregates and construction materials
+            Browse our full range of crushed stone, ballast, hardcore, and quarry dust
           </p>
         </div>
 

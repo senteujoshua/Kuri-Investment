@@ -5,14 +5,14 @@ function HeroSection() {
     <section className="hero">
       <div className="container">
         <div className="hero-content">
-          <span className="hero-tag">Premium Construction Materials</span>
+          <span className="hero-tag">Premium Stone Aggregates &mdash; Kigango, Nyeri</span>
           <h1>
             Quality <span className="accent">Quarry Aggregates</span> Delivered to Your Site
           </h1>
           <p>
-            From crushed stone to building sand, we supply the construction materials
-            that build Zimbabwe. Order online, get instant delivery quotes, and track
-            your order in real time.
+            Kuri Investments is your trusted supplier of crushed stone, ballast, hardcore,
+            and quarry dust in Kenya. We supply construction materials that build the nation
+            &mdash; order online and get delivery across the country.
           </p>
           <div className="hero-buttons">
             <Link to="/products" className="btn btn-primary btn-lg">

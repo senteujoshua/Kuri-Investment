@@ -4,7 +4,7 @@ function About() {
       <div className="page-hero">
         <div className="container">
           <h1>About <span className="section-accent">Kuri Investments</span></h1>
-          <p>Building Zimbabwe&apos;s future with quality construction materials since 2009</p>
+          <p>Building Kenya&apos;s future with quality construction materials since 2009</p>
         </div>
       </div>
 
@@ -15,19 +15,21 @@ function About() {
               <h2>Our <span className="section-accent">Story</span></h2>
               <p>
                 Kuri Investments has been at the forefront of the quarry and aggregates
-                industry for over 15 years. Founded with a vision to provide high-quality
-                construction materials, we have grown into one of the most trusted
-                suppliers in Zimbabwe.
+                industry for over 15 years. Founded in 2009 and based in Kigango, Nyeri,
+                we started with a vision to provide high-quality construction materials
+                to builders across Kenya.
               </p>
               <p>
-                Our quarry operations are fully licensed and comply with all mining
-                regulations. We invest in modern equipment and processes to ensure
-                consistent quality in every load we deliver.
+                Our stone crushing plant produces a full range of aggregates including
+                3/4 inch (20mm) and 3/8 inch (10mm) crushed stone, ballast, hardcore,
+                and quarry dust. Every batch is carefully processed to meet construction
+                standards.
               </p>
               <p>
-                From small residential projects to large-scale commercial construction,
-                we serve contractors, builders, and homeowners with the same commitment
-                to quality and reliability.
+                From small residential projects to large-scale commercial and infrastructure
+                developments, we serve contractors, builders, and homeowners across Kenya
+                with the same commitment to quality and reliability. Our quarry operations
+                are fully licensed and compliant with all Kenyan mining regulations.
               </p>
             </div>
             <div className="about-image">
@@ -48,17 +50,17 @@ function About() {
                 {
                   icon: '\u{1F48E}',
                   title: 'Quality First',
-                  desc: 'Every batch of material is tested to ensure it meets construction standards. We never compromise on quality.',
+                  desc: 'Every batch of material is processed and graded to ensure it meets construction standards. We never compromise on quality.',
                 },
                 {
                   icon: '\u{1F91D}',
                   title: 'Customer Trust',
-                  desc: 'We build lasting relationships with our customers through transparency, fair pricing, and reliable service.',
+                  desc: 'We build lasting relationships with our customers through transparency, fair pricing, and reliable delivery across Kenya.',
                 },
                 {
                   icon: '\u{1F331}',
                   title: 'Sustainability',
-                  desc: 'We operate responsibly, rehabilitating quarried land and minimizing our environmental impact.',
+                  desc: 'We operate responsibly, rehabilitating quarried land and minimizing our environmental impact in the Nyeri region.',
                 },
               ].map((value, idx) => (
                 <div key={idx} style={{

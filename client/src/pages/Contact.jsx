@@ -6,9 +6,8 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Build WhatsApp message from form data
     const msg = `Hi, I'm ${formData.name}.\n\n${formData.message}\n\nContact: ${formData.phone || formData.email}`;
-    const whatsappUrl = `https://wa.me/263771234567?text=${encodeURIComponent(msg)}`;
+    const whatsappUrl = `https://wa.me/254717377226?text=${encodeURIComponent(msg)}`;
     window.open(whatsappUrl, '_blank');
     setSubmitted(true);
   };
@@ -33,7 +32,7 @@ function Contact() {
               <div className="contact-info-icon">{'\u{1F4DE}'}</div>
               <div>
                 <h4>Phone</h4>
-                <p>+263 77 123 4567</p>
+                <p><a href="tel:+254717377226" style={{ color: 'inherit' }}>+254 717 377 226</a></p>
               </div>
             </div>
 
@@ -41,7 +40,7 @@ function Contact() {
               <div className="contact-info-icon">{'\u{1F4E7}'}</div>
               <div>
                 <h4>Email</h4>
-                <p>info@kuriinvestments.com</p>
+                <p><a href="mailto:info@kuriinvestments.co.ke" style={{ color: 'inherit' }}>info@kuriinvestments.co.ke</a></p>
               </div>
             </div>
 
@@ -49,7 +48,7 @@ function Contact() {
               <div className="contact-info-icon">{'\u{1F4CD}'}</div>
               <div>
                 <h4>Location</h4>
-                <p>Harare, Zimbabwe</p>
+                <p>Kigango, Nyeri, Kenya</p>
               </div>
             </div>
 
@@ -57,7 +56,15 @@ function Contact() {
               <div className="contact-info-icon">{'\u{1F552}'}</div>
               <div>
                 <h4>Business Hours</h4>
-                <p>Mon-Fri: 6:00 AM - 5:00 PM<br />Sat: 6:00 AM - 1:00 PM</p>
+                <p>Mon-Sat: 8:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+
+            <div className="contact-info-item">
+              <div className="contact-info-icon">{'\u{1F4F1}'}</div>
+              <div>
+                <h4>WhatsApp</h4>
+                <p><a href="https://wa.me/254717377226" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>Chat with us on WhatsApp</a></p>
               </div>
             </div>
           </div>
@@ -106,7 +113,7 @@ function Contact() {
                   <label>Phone Number</label>
                   <input
                     type="tel"
-                    placeholder="+263 77 123 4567"
+                    placeholder="0717 377 226"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
@@ -123,14 +130,14 @@ function Contact() {
                 <div className="form-group">
                   <label>Message</label>
                   <textarea
-                    placeholder="How can we help you?"
+                    placeholder="How can we help you? (e.g., I need 10 tons of ballast delivered to Nairobi)"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
                   />
                 </div>
                 <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                  Send Message
+                  Send via WhatsApp
                 </button>
               </form>
             )}

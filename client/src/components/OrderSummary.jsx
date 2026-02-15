@@ -30,7 +30,7 @@ function OrderSummary({ deliveryCost = 0 }) {
         <div className="order-item" key={item.product.id}>
           <div className="order-item-info">
             <h4>{item.product.name}</h4>
-            <p>${item.product.price_per_ton}/ton</p>
+            <p>KES {Number(item.product.price_per_ton).toLocaleString()}/ton</p>
           </div>
           <div className="order-item-actions">
             <div className="qty-control">
@@ -48,15 +48,15 @@ function OrderSummary({ deliveryCost = 0 }) {
       <div className="order-total">
         <div className="order-total-row">
           <span>Subtotal</span>
-          <span>${subtotal.toFixed(2)}</span>
+          <span>KES {subtotal.toLocaleString()}</span>
         </div>
         <div className="order-total-row">
           <span>Delivery</span>
-          <span>{deliveryCost > 0 ? `$${deliveryCost.toFixed(2)}` : 'Free'}</span>
+          <span>{deliveryCost > 0 ? `KES ${deliveryCost.toLocaleString()}` : 'Free'}</span>
         </div>
         <div className="order-total-row grand">
           <span>Total</span>
-          <span>${total.toFixed(2)}</span>
+          <span>KES {total.toLocaleString()}</span>
         </div>
       </div>
     </div>

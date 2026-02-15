@@ -92,9 +92,9 @@ export function generateMonthlyReport(data) {
 
   // Stat boxes
   const stats = [
-    { label: 'Total Revenue', value: `$${revenue.totalRevenue.toFixed(2)}` },
+    { label: 'Total Revenue', value: `KES ${revenue.totalRevenue.toLocaleString()}` },
     { label: 'Total Orders', value: String(revenue.totalOrders) },
-    { label: 'Avg Order Value', value: `$${revenue.avgOrderValue.toFixed(2)}` },
+    { label: 'Avg Order Value', value: `KES ${revenue.avgOrderValue.toLocaleString()}` },
   ];
 
   const boxWidth = 53;
@@ -127,7 +127,7 @@ export function generateMonthlyReport(data) {
     doc.setFontSize(9);
     doc.setTextColor(...GRAY);
     doc.text(
-      `vs ${formatMonth(previousMonth.month)}: $${previousMonth.totalRevenue.toFixed(2)} revenue, ${previousMonth.totalOrders} orders (${revChange >= 0 ? '+' : ''}${typeof revPct === 'string' ? revPct : revPct + '%'})`,
+      `vs ${formatMonth(previousMonth.month)}: KES ${previousMonth.totalRevenue.toLocaleString()} revenue, ${previousMonth.totalOrders} orders (${revChange >= 0 ? '+' : ''}${typeof revPct === 'string' ? revPct : revPct + '%'})`,
       20,
       y
     );
@@ -168,7 +168,7 @@ export function generateMonthlyReport(data) {
         p.name,
         p.category,
         p.tons_sold.toFixed(1),
-        `$${p.revenue.toFixed(2)}`,
+        `KES ${p.revenue.toLocaleString()}`,
       ]),
       margin: { left: 20, right: 20 },
       styles: { fontSize: 10, cellPadding: 5 },
@@ -202,7 +202,7 @@ export function generateMonthlyReport(data) {
         c.name,
         c.phone,
         c.orders,
-        `$${c.total_spent.toFixed(2)}`,
+        `KES ${c.total_spent.toLocaleString()}`,
       ]),
       margin: { left: 20, right: 20 },
       styles: { fontSize: 10, cellPadding: 5 },
@@ -225,7 +225,7 @@ export function generateMonthlyReport(data) {
         o.id,
         o.customer_name,
         o.customer_phone,
-        `$${o.total_cost.toFixed(2)}`,
+        `KES ${o.total_cost.toLocaleString()}`,
         o.status.charAt(0).toUpperCase() + o.status.slice(1),
         new Date(o.created_at).toLocaleDateString(),
       ]),

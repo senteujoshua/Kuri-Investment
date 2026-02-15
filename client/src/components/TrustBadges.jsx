@@ -3,7 +3,7 @@ function TrustBadges() {
     {
       icon: '\u{1F3C6}',
       title: 'Licensed Quarry',
-      description: 'Fully licensed and compliant with mining regulations',
+      description: 'Fully licensed and compliant with Kenyan mining regulations',
     },
     {
       icon: '\u2705',
@@ -13,12 +13,12 @@ function TrustBadges() {
     {
       icon: '\u{1F4AA}',
       title: '15+ Years Experience',
-      description: 'Trusted by contractors and builders since 2009',
+      description: 'Trusted by contractors and builders across Kenya since 2009',
     },
     {
       icon: '\u{1F69A}',
-      title: 'Fast Delivery',
-      description: 'Same-day delivery available within Harare and surrounds',
+      title: 'Nationwide Delivery',
+      description: 'Reliable delivery across Kenya from our Kigango, Nyeri quarry',
     },
   ];
 

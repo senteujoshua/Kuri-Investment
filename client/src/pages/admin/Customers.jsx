@@ -79,7 +79,7 @@ function Customers() {
                     <td>{customer.phone}</td>
                     <td>{customer.email || '-'}</td>
                     <td>{customer.total_orders}</td>
-                    <td>${(customer.total_spent || 0).toFixed(2)}</td>
+                    <td>KES {(customer.total_spent || 0).toLocaleString()}</td>
                     <td>{new Date(customer.last_order).toLocaleDateString()}</td>
                   </tr>
                 ))}

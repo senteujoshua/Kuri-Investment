@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { AdminSidebar } from './Dashboard';
 import { getAdminProducts, createProduct, updateProduct } from '../../utils/api';
 
-const CATEGORIES = ['Stone', 'Sand', 'Gravel', 'Mixed'];
-const SIZES = ['10mm', '20mm', '40mm', '100mm+', 'Dust', 'Fine', 'Coarse', 'Mixed'];
+const CATEGORIES = ['Stone', 'Mixed'];
+const SIZES = ['10mm', '20mm', '50mm', 'Dust', 'Mixed'];
 
 const emptyForm = {
   name: '',
@@ -188,7 +188,7 @@ function AdminProducts() {
                 </div>
                 <div>
                   <label style={{ display: 'block', color: 'var(--color-gray)', fontSize: '0.85rem', marginBottom: '4px' }}>
-                    Price per Ton ($) *
+                    Price per Ton (KES) *
                   </label>
                   <input
                     type="number"
@@ -309,7 +309,7 @@ function AdminProducts() {
                     <td>{product.name}</td>
                     <td>{product.category}</td>
                     <td>{product.size}</td>
-                    <td>${product.price_per_ton.toFixed(2)}</td>
+                    <td>KES {Number(product.price_per_ton).toLocaleString()}</td>
                     <td>{product.use_case}</td>
                     <td>
                       <span className={`badge ${product.in_stock ? 'badge-confirmed' : 'badge-cancelled'}`}>

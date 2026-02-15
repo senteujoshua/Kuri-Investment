@@ -1,11 +1,11 @@
-// Quarry location (placeholder - update with actual coordinates)
-const QUARRY_LAT = -17.8252;
-const QUARRY_LNG = 31.0335;
+// Quarry location - Kigango, Nyeri, Kenya
+const QUARRY_LAT = -0.4167;
+const QUARRY_LNG = 36.9500;
 
-// Delivery rate per km
-const RATE_PER_KM = 2.5;
-const BASE_DELIVERY_FEE = 20;
-const MAX_FREE_DISTANCE = 5; // km
+// Delivery rate per km (KES)
+const RATE_PER_KM = 150;
+const BASE_DELIVERY_FEE = 2000;
+const MAX_FREE_DISTANCE = 10; // km - free delivery within Nyeri
 
 // Calculate distance between two points using Haversine formula
 function haversineDistance(lat1, lon1, lat2, lon2) {
@@ -30,11 +30,11 @@ export function calculateDeliveryCost(deliveryLat, deliveryLng) {
   const distance = haversineDistance(QUARRY_LAT, QUARRY_LNG, deliveryLat, deliveryLng);
 
   if (distance <= MAX_FREE_DISTANCE) {
-    return 0; // Free delivery within 5km
+    return 0; // Free delivery within 10km (Nyeri area)
   }
 
   const cost = BASE_DELIVERY_FEE + (distance - MAX_FREE_DISTANCE) * RATE_PER_KM;
-  return Math.round(cost * 100) / 100;
+  return Math.round(cost);
 }
 
 export function getDistanceFromQuarry(lat, lng) {
@@ -51,15 +51,14 @@ export const TRUCK_SIZES = [
 
 // Material density for calculator (tons per cubic meter)
 export const MATERIAL_DENSITIES = {
-  'Crushed Stone': 1.6,
-  'Stone Dust': 1.8,
-  'Sand': 1.5,
-  'Gravel': 1.4,
-  'Road Base': 1.7,
-  'Gabion Stone': 1.5,
+  '3/4 Crushed Stone': 1.6,
+  '3/8 Crushed Stone': 1.6,
+  'Ballast': 1.5,
+  'Hardcore': 1.8,
+  'Quarry Dust': 1.8,
 };
 
-export function calculateRequiredTons(lengthM, widthM, depthM, materialType = 'Crushed Stone') {
+export function calculateRequiredTons(lengthM, widthM, depthM, materialType = '3/4 Crushed Stone') {
   const volumeM3 = lengthM * widthM * depthM;
   const density = MATERIAL_DENSITIES[materialType] || 1.6;
   const tons = volumeM3 * density;

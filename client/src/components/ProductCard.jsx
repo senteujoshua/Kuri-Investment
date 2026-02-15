@@ -31,7 +31,7 @@ function ProductCard({ product }) {
         <p>{product.description}</p>
         <div className="product-card-footer">
           <div className="product-price">
-            ${product.price_per_ton} <span>/ton</span>
+            KES {Number(product.price_per_ton).toLocaleString()} <span>/ton</span>
           </div>
           <button className="btn btn-primary btn-sm" onClick={handleAdd}>
             Add to Order

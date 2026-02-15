@@ -23,7 +23,7 @@ function FeaturedProducts() {
           Our <span className="section-accent">Products</span>
         </h2>
         <p className="section-subtitle">
-          Premium quarry aggregates for every construction need
+          Premium crushed stone, ballast, hardcore, and quarry dust from Kigango, Nyeri
         </p>
 
         {loading ? (

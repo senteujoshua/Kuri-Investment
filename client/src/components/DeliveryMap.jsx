@@ -6,7 +6,8 @@ function DeliveryMap() {
           Delivery <span className="section-accent">Coverage</span>
         </h2>
         <p className="section-subtitle">
-          We deliver across Harare and surrounding areas. Free delivery within 5km of our quarry.
+          We deliver nationwide across Kenya from our quarry in Kigango, Nyeri.
+          Contact us for delivery rates to your location.
         </p>
 
         <div style={{
@@ -15,10 +16,12 @@ function DeliveryMap() {
           gap: '20px'
         }}>
           {[
-            { area: 'Harare CBD', distance: '~15km', time: 'Same Day' },
-            { area: 'Chitungwiza', distance: '~25km', time: 'Same Day' },
-            { area: 'Norton', distance: '~40km', time: 'Same Day' },
-            { area: 'Ruwa', distance: '~20km', time: 'Same Day' },
+            { area: 'Nyeri & Central Kenya', distance: 'Local', time: 'Same Day' },
+            { area: 'Nairobi & Environs', distance: '~150km', time: '1-2 Days' },
+            { area: 'Nakuru & Rift Valley', distance: '~200km', time: '1-2 Days' },
+            { area: 'Mombasa & Coast', distance: '~500km', time: '2-3 Days' },
+            { area: 'Kisumu & Western', distance: '~400km', time: '2-3 Days' },
+            { area: 'Eldoret & North Rift', distance: '~300km', time: '2-3 Days' },
           ].map((zone, idx) => (
             <div key={idx} style={{
               background: 'var(--color-dark-2)',

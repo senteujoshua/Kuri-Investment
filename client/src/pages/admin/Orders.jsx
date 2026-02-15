@@ -96,7 +96,7 @@ function AdminOrders() {
               <div>
                 <p style={{ color: 'var(--color-gray)', fontSize: '0.85rem' }}>Delivery</p>
                 <p>{selectedOrder.delivery_address || 'Pickup'}</p>
-                <p style={{ color: 'var(--color-gray)', fontSize: '0.9rem' }}>Cost: ${selectedOrder.delivery_cost}</p>
+                <p style={{ color: 'var(--color-gray)', fontSize: '0.9rem' }}>Cost: KES {Number(selectedOrder.delivery_cost).toLocaleString()}</p>
               </div>
             </div>
 
@@ -115,7 +115,7 @@ function AdminOrders() {
                       <tr key={item.id}>
                         <td>{item.product_name}</td>
                         <td>{item.quantity_tons}T</td>
-                        <td>${item.price.toFixed(2)}</td>
+                        <td>KES {Number(item.price).toLocaleString()}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -126,7 +126,7 @@ function AdminOrders() {
             <div className="flex-wrap-gap" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
                 <span style={{ color: 'var(--color-gray)' }}>Total: </span>
-                <strong style={{ color: 'var(--color-orange)', fontSize: '1.2rem' }}>${selectedOrder.total_cost.toFixed(2)}</strong>
+                <strong style={{ color: 'var(--color-orange)', fontSize: '1.2rem' }}>KES {selectedOrder.total_cost.toLocaleString()}</strong>
               </div>
               <div className="flex-wrap-gap">
                 {['pending', 'confirmed', 'processing', 'delivered', 'cancelled'].map((s) => (
@@ -176,7 +176,7 @@ function AdminOrders() {
                     <td>#{order.id}</td>
                     <td>{order.customer_name}</td>
                     <td>{order.customer_phone}</td>
-                    <td>${order.total_cost.toFixed(2)}</td>
+                    <td>KES {order.total_cost.toLocaleString()}</td>
                     <td><span className={`badge badge-${order.status}`}>{order.status}</span></td>
                     <td>{new Date(order.created_at).toLocaleDateString()}</td>
                     <td>

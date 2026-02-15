@@ -60,7 +60,7 @@ export function trackViewContent(product) {
       content_ids: [product.id],
       content_type: 'product',
       value: product.price_per_ton,
-      currency: 'USD',
+      currency: 'KES',
     });
   }
 }
@@ -72,7 +72,7 @@ export function trackAddToCart(product, quantity) {
       content_ids: [product.id],
       content_type: 'product',
       value: product.price_per_ton * quantity,
-      currency: 'USD',
+      currency: 'KES',
     });
   }
 }
@@ -83,7 +83,7 @@ export function trackInitiateCheckout(items, total) {
       content_ids: items.map((i) => i.product_id),
       num_items: items.length,
       value: total,
-      currency: 'USD',
+      currency: 'KES',
     });
   }
 }
@@ -92,7 +92,7 @@ export function trackPurchase(orderId, total) {
   if (window.fbq) {
     window.fbq('track', 'Purchase', {
       value: total,
-      currency: 'USD',
+      currency: 'KES',
       content_type: 'product',
     });
   }

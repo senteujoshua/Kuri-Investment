@@ -8,8 +8,9 @@ function Footer() {
           <div className="footer-brand">
             <h3><span style={{ color: 'var(--color-orange)' }}>KURI</span> INVESTMENTS</h3>
             <p>
-              Your trusted supplier of premium quarry aggregates and construction materials.
-              Serving the construction industry with quality stone, sand, and gravel since 2009.
+              Your trusted supplier of premium quarry aggregates and construction materials
+              in Kenya. Serving the construction industry with quality stone, ballast, and
+              hardcore from our quarry in Kigango, Nyeri.
             </p>
           </div>
 
@@ -27,22 +28,21 @@ function Footer() {
           <div className="footer-col">
             <h4>Products</h4>
             <ul>
-              <li><Link to="/products">Crushed Stone</Link></li>
-              <li><Link to="/products">Building Sand</Link></li>
-              <li><Link to="/products">River Gravel</Link></li>
-              <li><Link to="/products">Road Base</Link></li>
-              <li><Link to="/products">Gabion Stone</Link></li>
+              <li><Link to="/products">3/4 Crushed Stone (20mm)</Link></li>
+              <li><Link to="/products">3/8 Crushed Stone (10mm)</Link></li>
+              <li><Link to="/products">Ballast</Link></li>
+              <li><Link to="/products">Hardcore</Link></li>
+              <li><Link to="/products">Quarry Dust</Link></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h4>Contact</h4>
             <ul>
-              <li><a href="tel:+263771234567">+263 77 123 4567</a></li>
-              <li><a href="mailto:info@kuriinvestments.com">info@kuriinvestments.com</a></li>
-              <li>Harare, Zimbabwe</li>
-              <li>Mon-Fri: 6AM - 5PM</li>
-              <li>Sat: 6AM - 1PM</li>
+              <li><a href="tel:+254717377226">+254 717 377 226</a></li>
+              <li><a href="mailto:info@kuriinvestments.co.ke">info@kuriinvestments.co.ke</a></li>
+              <li>Kigango, Nyeri, Kenya</li>
+              <li>Mon-Sat: 8:00 AM - 6:00 PM</li>
             </ul>
           </div>
         </div>

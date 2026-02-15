@@ -5,7 +5,7 @@ function MaterialCalculator() {
   const [length, setLength] = useState('');
   const [width, setWidth] = useState('');
   const [depth, setDepth] = useState('');
-  const [material, setMaterial] = useState('Crushed Stone');
+  const [material, setMaterial] = useState('3/4 Crushed Stone');
   const [result, setResult] = useState(null);
 
   const handleCalculate = () => {

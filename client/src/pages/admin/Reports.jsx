@@ -114,10 +114,10 @@ function Reports() {
             <div className="stat-cards" style={{ marginBottom: '24px' }}>
               <div className="stat-card">
                 <div className="stat-label">Revenue</div>
-                <div className="stat-value">${report.revenue.totalRevenue.toFixed(2)}</div>
+                <div className="stat-value">KES {report.revenue.totalRevenue.toLocaleString()}</div>
                 {report.previousMonth.totalOrders > 0 && (
                   <div style={{ color: 'var(--color-gray)', fontSize: '0.8rem', marginTop: '4px' }}>
-                    vs ${report.previousMonth.totalRevenue.toFixed(2)} prev
+                    vs KES {report.previousMonth.totalRevenue.toLocaleString()} prev
                   </div>
                 )}
               </div>
@@ -127,7 +127,7 @@ function Reports() {
               </div>
               <div className="stat-card">
                 <div className="stat-label">Avg Order</div>
-                <div className="stat-value">${report.revenue.avgOrderValue.toFixed(2)}</div>
+                <div className="stat-value">KES {report.revenue.avgOrderValue.toLocaleString()}</div>
               </div>
               <div className="stat-card">
                 <div className="stat-label">Customers</div>
@@ -173,7 +173,7 @@ function Reports() {
                           <div>{c.name}</div>
                           <div style={{ color: 'var(--color-gray)', fontSize: '0.8rem' }}>{c.orders} orders</div>
                         </div>
-                        <strong style={{ color: 'var(--color-orange)' }}>${c.total_spent.toFixed(2)}</strong>
+                        <strong style={{ color: 'var(--color-orange)' }}>KES {c.total_spent.toLocaleString()}</strong>
                       </div>
                     ))}
                   </div>
@@ -208,7 +208,7 @@ function Reports() {
                           <td>{p.name}</td>
                           <td>{p.category}</td>
                           <td>{p.tons_sold.toFixed(1)}T</td>
-                          <td style={{ color: 'var(--color-orange)' }}>${p.revenue.toFixed(2)}</td>
+                          <td style={{ color: 'var(--color-orange)' }}>KES {p.revenue.toLocaleString()}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -245,7 +245,7 @@ function Reports() {
                           <td>#{order.id}</td>
                           <td>{order.customer_name}</td>
                           <td>{order.customer_phone}</td>
-                          <td>${order.total_cost.toFixed(2)}</td>
+                          <td>KES {order.total_cost.toLocaleString()}</td>
                           <td><span className={`badge badge-${order.status}`}>{order.status}</span></td>
                           <td>{new Date(order.created_at).toLocaleDateString()}</td>
                         </tr>
