@@ -1,5 +1,6 @@
 import { useCart } from '../context/CartContext';
 import { trackAddToCart } from '../utils/fbPixel';
+import { resolveImageUrl } from '../utils/api';
 
 const PRODUCT_ICONS = {
   Stone: '\u26F0\uFE0F',
@@ -20,7 +21,7 @@ function ProductCard({ product }) {
     <div className="product-card">
       <div className="product-card-image">
         {product.image && !product.image.includes('placeholder') ? (
-          <img src={product.image} alt={product.name} />
+          <img src={resolveImageUrl(product.image)} alt={product.name} />
         ) : (
           <span>{PRODUCT_ICONS[product.category] || '\u26F0\uFE0F'}</span>
         )}

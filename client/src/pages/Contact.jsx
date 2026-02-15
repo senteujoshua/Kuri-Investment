@@ -22,6 +22,25 @@ function Contact() {
       </div>
 
       <div className="container">
+        {/* Google Map */}
+        <div style={{
+          marginBottom: '40px',
+          borderRadius: 'var(--radius)',
+          overflow: 'hidden',
+          border: '1px solid var(--color-dark-3)',
+        }}>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.75567951184!2d37.0033915!3d-0.3210631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1828695878c010ab%3A0x4cd867e3ad3aef7d!2sKuri%20crusher!5e0!3m2!1sen!2ske!4v1771116736498!5m2!1sen!2ske"
+            width="100%"
+            height="400"
+            style={{ border: 0, display: 'block' }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Kuri Investments Location"
+          />
+        </div>
+
         <div className="contact-grid">
           <div>
             <h2 className="section-title" style={{ fontSize: '1.6rem', marginBottom: '30px' }}>

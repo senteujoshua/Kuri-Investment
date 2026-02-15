@@ -1,5 +1,19 @@
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
+// Resolve image URLs - uploaded images are stored as /uploads/xxx.jpg
+// In production, prepend the backend origin so they load from Render
+export function resolveImageUrl(path) {
+  if (!path) return '';
+  if (path.startsWith('http')) return path; // Already absolute
+  if (path.startsWith('/uploads')) {
+    // In production, API_BASE is like https://kuri-investment.onrender.com/api
+    // We need https://kuri-investment.onrender.com/uploads/...
+    const base = API_BASE.replace(/\/api$/, '');
+    if (base && base !== '') return `${base}${path}`;
+  }
+  return path;
+}
+
 async function fetchAPI(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`;
   const config = {
@@ -105,6 +119,26 @@ export function updateProduct(id, data) {
     method: 'PUT',
     body: JSON.stringify(data),
   });
+}
+
+// Image upload
+export async function uploadImage(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+
+  const token = localStorage.getItem('admin_token');
+  const response = await fetch(`${API_BASE}/admin/upload`, {
+    method: 'POST',
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ error: 'Upload failed' }));
+    throw new Error(error.error || 'Upload failed');
+  }
+
+  return response.json();
 }
 
 // Reports

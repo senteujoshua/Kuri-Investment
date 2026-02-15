@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { initDatabase } = require('./db/database');
 
 const app = express();
@@ -11,6 +12,9 @@ const allowedOrigins = process.env.FRONTEND_URL
   : ['http://localhost:5173', 'http://localhost:3000'];
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
+
+// Serve uploaded files statically
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminSidebar } from './Dashboard';
-import { getAdminProducts, createProduct, updateProduct } from '../../utils/api';
+import { getAdminProducts, createProduct, updateProduct, uploadImage, resolveImageUrl } from '../../utils/api';
 
 const CATEGORIES = ['Stone', 'Mixed'];
 const SIZES = ['10mm', '20mm', '50mm', 'Dust', 'Mixed'];
@@ -24,6 +24,7 @@ function AdminProducts() {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -95,6 +96,22 @@ function AdminProducts() {
 
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError('');
+    try {
+      const { url } = await uploadImage(file);
+      handleChange('image', url);
+    } catch (err) {
+      setError('Image upload failed: ' + err.message);
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -223,19 +240,61 @@ function AdminProducts() {
                 </div>
                 <div>
                   <label style={{ display: 'block', color: 'var(--color-gray)', fontSize: '0.85rem', marginBottom: '4px' }}>
-                    Image URL
+                    Product Image
                   </label>
-                  <input
-                    type="text"
-                    value={form.image}
-                    onChange={(e) => handleChange('image', e.target.value)}
-                    placeholder="https://..."
-                    style={{
-                      width: '100%', padding: '10px 12px', background: 'var(--color-dark-1)',
-                      border: '1px solid var(--color-dark-3)', borderRadius: 'var(--radius)',
-                      color: 'var(--color-white)', fontSize: '0.95rem',
-                    }}
-                  />
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <label style={{
+                      padding: '10px 16px', background: 'var(--color-orange)', color: 'white',
+                      borderRadius: 'var(--radius)', cursor: uploading ? 'wait' : 'pointer',
+                      fontWeight: 600, fontSize: '0.85rem', whiteSpace: 'nowrap',
+                      opacity: uploading ? 0.7 : 1,
+                    }}>
+                      {uploading ? 'Uploading...' : 'Choose File'}
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/gif,image/webp"
+                        onChange={handleImageUpload}
+                        disabled={uploading}
+                        style={{ display: 'none' }}
+                      />
+                    </label>
+                    <input
+                      type="text"
+                      value={form.image}
+                      onChange={(e) => handleChange('image', e.target.value)}
+                      placeholder="or paste image URL..."
+                      style={{
+                        flex: 1, padding: '10px 12px', background: 'var(--color-dark-1)',
+                        border: '1px solid var(--color-dark-3)', borderRadius: 'var(--radius)',
+                        color: 'var(--color-white)', fontSize: '0.85rem',
+                      }}
+                    />
+                  </div>
+                  {form.image && (
+                    <div style={{ marginTop: '8px', position: 'relative', display: 'inline-block' }}>
+                      <img
+                        src={resolveImageUrl(form.image)}
+                        alt="Preview"
+                        style={{
+                          maxWidth: '120px', maxHeight: '80px', borderRadius: 'var(--radius)',
+                          border: '1px solid var(--color-dark-3)', objectFit: 'cover',
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleChange('image', '')}
+                        style={{
+                          position: 'absolute', top: '-6px', right: '-6px',
+                          background: '#ef4444', color: 'white', border: 'none',
+                          borderRadius: '50%', width: '20px', height: '20px',
+                          cursor: 'pointer', fontSize: '12px', lineHeight: '20px',
+                          textAlign: 'center', padding: 0,
+                        }}
+                      >
+                        {'\u2715'}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -294,11 +353,11 @@ function AdminProducts() {
             <table>
               <thead>
                 <tr>
+                  <th>Image</th>
                   <th>Name</th>
                   <th>Category</th>
                   <th>Size</th>
                   <th>Price/Ton</th>
-                  <th>Use Case</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -306,11 +365,20 @@ function AdminProducts() {
               <tbody>
                 {products.map((product) => (
                   <tr key={product.id}>
+                    <td>
+                      {product.image ? (
+                        <img src={resolveImageUrl(product.image)} alt={product.name} style={{
+                          width: '48px', height: '48px', objectFit: 'cover',
+                          borderRadius: '6px', border: '1px solid var(--color-dark-3)',
+                        }} />
+                      ) : (
+                        <span style={{ fontSize: '1.5rem' }}>{'\u26F0\uFE0F'}</span>
+                      )}
+                    </td>
                     <td>{product.name}</td>
                     <td>{product.category}</td>
                     <td>{product.size}</td>
                     <td>KES {Number(product.price_per_ton).toLocaleString()}</td>
-                    <td>{product.use_case}</td>
                     <td>
                       <span className={`badge ${product.in_stock ? 'badge-confirmed' : 'badge-cancelled'}`}>
                         {product.in_stock ? 'In Stock' : 'Out of Stock'}
