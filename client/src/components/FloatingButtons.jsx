@@ -1,7 +1,7 @@
 function FloatingButtons() {
   const whatsappNumber = '254717377226';
   const whatsappMessage = encodeURIComponent("Hi, I'm interested in your quarry products. I'd like to get a quote.");
-  const instagramUrl = 'https://instagram.com/kuriinvestments';
+  const instagramUrl = 'https://www.instagram.com/kuri_construction?igsh=dm02dDBmNWNtZjhu';
 
   return (
     <div className="floating-buttons">
