@@ -1,9 +1,10 @@
 import { useCart } from '../context/CartContext';
 
-function OrderSummary({ deliveryCost = 0 }) {
+function OrderSummary({ deliveryCost = 0, deliveryLocationName = '' }) {
   const { items, updateQuantity, removeItem, getSubtotal } = useCart();
   const subtotal = getSubtotal();
   const total = subtotal + deliveryCost;
+  const isSelfPickup = !deliveryLocationName;
 
   if (items.length === 0) {
     return (
@@ -51,8 +52,21 @@ function OrderSummary({ deliveryCost = 0 }) {
           <span>KES {subtotal.toLocaleString()}</span>
         </div>
         <div className="order-total-row">
-          <span>Delivery</span>
-          <span>{deliveryCost > 0 ? `KES ${deliveryCost.toLocaleString()}` : 'Free'}</span>
+          <span>
+            {isSelfPickup ? 'Self Pickup' : 'Delivery'}
+            {deliveryLocationName && (
+              <span style={{ fontSize: '0.8rem', color: 'var(--color-gray)', display: 'block' }}>
+                {deliveryLocationName}
+              </span>
+            )}
+          </span>
+          <span>
+            {isSelfPickup
+              ? 'Free'
+              : deliveryCost > 0
+                ? `KES ${deliveryCost.toLocaleString()}`
+                : 'Free'}
+          </span>
         </div>
         <div className="order-total-row grand">
           <span>Total</span>

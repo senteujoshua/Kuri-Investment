@@ -1,45 +1,25 @@
-// Quarry location - Kigango, Nyeri, Kenya
-const QUARRY_LAT = -0.4167;
-const QUARRY_LNG = 36.9500;
-
 // Delivery rate per km (KES)
-const RATE_PER_KM = 150;
-const BASE_DELIVERY_FEE = 2000;
-const MAX_FREE_DISTANCE = 10; // km - free delivery within Nyeri
+const RATE_PER_KM = 450;
 
-// Calculate distance between two points using Haversine formula
-function haversineDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371; // Earth's radius in km
-  const dLat = toRad(lat2 - lat1);
-  const dLon = toRad(lon2 - lon1);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-}
+// Known delivery locations with approximate distances from Kigango quarry (km)
+export const DELIVERY_LOCATIONS = [
+  { name: 'Kigango / Nyeri (Local)', distance: 0 },
+  { name: 'Karatina', distance: 15 },
+  { name: 'Nanyuki', distance: 60 },
+  { name: 'Embu', distance: 100 },
+  { name: 'Meru', distance: 120 },
+  { name: 'Nairobi / Thika', distance: 150 },
+  { name: 'Nakuru', distance: 200 },
+  { name: 'Eldoret', distance: 300 },
+  { name: 'Kisumu', distance: 400 },
+  { name: 'Mombasa', distance: 500 },
+  { name: 'Other (enter distance)', distance: -1 },
+];
 
-function toRad(deg) {
-  return deg * (Math.PI / 180);
-}
-
-export function calculateDeliveryCost(deliveryLat, deliveryLng) {
-  if (!deliveryLat || !deliveryLng) return 0;
-
-  const distance = haversineDistance(QUARRY_LAT, QUARRY_LNG, deliveryLat, deliveryLng);
-
-  if (distance <= MAX_FREE_DISTANCE) {
-    return 0; // Free delivery within 10km (Nyeri area)
-  }
-
-  const cost = BASE_DELIVERY_FEE + (distance - MAX_FREE_DISTANCE) * RATE_PER_KM;
-  return Math.round(cost);
-}
-
-export function getDistanceFromQuarry(lat, lng) {
-  if (!lat || !lng) return 0;
-  return Math.round(haversineDistance(QUARRY_LAT, QUARRY_LNG, lat, lng) * 10) / 10;
+// Calculate delivery cost from distance in km
+export function calculateDeliveryCost(distanceKm) {
+  if (!distanceKm || distanceKm <= 0) return 0;
+  return Math.round(distanceKm * RATE_PER_KM);
 }
 
 // Truck capacities
