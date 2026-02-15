@@ -5,14 +5,14 @@ function HeroSection() {
     <section className="hero">
       <div className="container">
         <div className="hero-content">
-          <span className="hero-tag">Premium Stone Aggregates &mdash; Kigango, Nyeri</span>
+          <span className="hero-tag">Stone Crushing Company in Kenya &mdash; Kigango, Nyeri</span>
           <h1>
-            Quality <span className="accent">Quarry Aggregates</span> Delivered to Your Site
+            Your Trusted <span className="accent">Stone Crushing Company</span> in Kenya
           </h1>
           <p>
-            Kuri Investments is your trusted supplier of crushed stone, ballast, hardcore,
-            and quarry dust in Kenya. We supply construction materials that build the nation
-            &mdash; order online and get delivery across the country.
+            Quality 3/4 &amp; 3/8 ballast, hardcore, and quarry dust &mdash; delivered from
+            Kigango, Nyeri. Kuri Investments is a leading supplier of crushed stone aggregates
+            for construction projects across Kenya. Order online and get fast delivery nationwide.
           </p>
           <div className="hero-buttons">
             <Link to="/products" className="btn btn-primary btn-lg">

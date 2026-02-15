@@ -13,6 +13,7 @@ function Products() {
   const [selectedUseCase, setSelectedUseCase] = useState('All');
 
   useEffect(() => {
+    document.title = 'Construction Aggregates & Ballast Suppliers in Kenya | Kuri Investments';
     loadProducts();
   }, []);
 
@@ -41,7 +42,7 @@ function Products() {
         <div className="page-header">
           <h1>Our <span className="section-accent">Products</span></h1>
           <p style={{ color: 'var(--color-gray)' }}>
-            Browse our full range of crushed stone, ballast, hardcore, and quarry dust
+            Construction aggregates and ballast suppliers in Kenya — browse our full range of 3/4, 3/8 crushed stone, ballast, hardcore, and quarry dust
           </p>
         </div>
 

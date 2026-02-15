@@ -12,7 +12,7 @@ async function seed() {
       size: '20mm',
       use_case: 'Foundation, Road, Concrete',
       price_per_ton: 1800,
-      description: 'Premium 3/4 inch (20mm) crushed stone ideal for foundations, road base layers, concrete mixing, and general construction. Provides excellent compaction and drainage properties.',
+      description: 'Premium 3/4 inch (20mm) crushed stone from Kuri Investments, Kigango, Nyeri. Ideal for foundations, road base layers, concrete mixing, and general construction in Kenya. Our 3/4 ballast provides excellent compaction and drainage — trusted by contractors nationwide.',
       image: '',
     },
     {
@@ -22,7 +22,7 @@ async function seed() {
       size: '10mm',
       use_case: 'Slab, Concrete, Finishing',
       price_per_ton: 2000,
-      description: 'Fine 3/8 inch (10mm) crushed stone perfect for concrete slabs, finishing work, and detailed construction applications. Clean and uniformly graded for consistent results.',
+      description: 'Fine 3/8 inch (10mm) crushed stone aggregates from our Kigango, Nyeri quarry. Perfect for concrete slabs, plastering, finishing work, and detailed construction applications across Kenya. Uniformly graded for consistent results — quality 3/8 aggregates delivered nationwide.',
       image: '',
     },
     {
@@ -32,7 +32,7 @@ async function seed() {
       size: '50mm',
       use_case: 'Foundation, Road, Drainage',
       price_per_ton: 1500,
-      description: 'Heavy-duty ballast stone for foundations, road construction, railway beds, and drainage systems. Large format aggregate providing structural stability and excellent load-bearing capacity.',
+      description: 'Heavy-duty ballast stone from Kuri Investments — leading ballast suppliers in Kenya. Ideal for foundations, road construction, railway beds, and drainage systems. Our ballast from Kigango, Nyeri provides structural stability and excellent load-bearing capacity for projects across Kenya.',
       image: '',
     },
     {
@@ -42,7 +42,7 @@ async function seed() {
       size: 'Mixed',
       use_case: 'Foundation, Backfill, Road, Leveling',
       price_per_ton: 1200,
-      description: 'Quality hardcore material for foundation backfill, ground leveling, and road sub-base. A cost-effective solution for ground preparation and site leveling work.',
+      description: 'Quality hardcore material from our stone crushing plant in Kigango, Nyeri. Perfect for foundation backfill, ground leveling, and road sub-base across Kenya. A cost-effective construction solution for site preparation — delivered by Kuri Investments, trusted hardcore suppliers in Kenya.',
       image: '',
     },
     {
@@ -52,7 +52,7 @@ async function seed() {
       size: 'Dust',
       use_case: 'Paving, Leveling, Landscaping',
       price_per_ton: 800,
-      description: 'Fine quarry dust for paving joints, surface leveling, landscaping, and as a base material under pavers and interlocking blocks. Compacts tightly for a stable, smooth surface.',
+      description: 'Fine quarry dust from Kuri Investments, Kigango, Nyeri. Ideal for paving joints, surface leveling, landscaping, and as a base under pavers and interlocking blocks in Kenya. Compacts tightly for a stable, smooth surface — affordable quarry dust delivered across Kenya.',
       image: '',
     },
   ];

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
 import FeaturedProducts from '../components/FeaturedProducts';
 import TrustBadges from '../components/TrustBadges';
@@ -5,6 +6,10 @@ import DeliveryMap from '../components/DeliveryMap';
 import MaterialCalculator from '../components/MaterialCalculator';
 
 function Home() {
+  useEffect(() => {
+    document.title = 'Stone Crushing Company in Kenya | 3/4 & 3/8 Ballast Suppliers in Nyeri - Kuri Investments';
+  }, []);
+
   return (
     <>
       <HeroSection />
@@ -28,17 +33,17 @@ function Home() {
                 Why Choose <span className="section-accent">Kuri?</span>
               </h2>
               <p className="section-subtitle" style={{ marginBottom: '20px' }}>
-                We are committed to quality and reliability.
+                Leading stone crushing company in Kenya — committed to quality and reliability.
               </p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
-                  'Consistent quality aggregates from our own quarry in Kigango, Nyeri',
-                  'Competitive pricing in KES with transparent delivery costs',
+                  'Premium-grade 3/4 and 3/8 aggregates from our own quarry in Kigango, Nyeri',
+                  'Certified and quality-tested materials meeting Kenyan construction standards',
+                  'Competitive prices for bulk orders with transparent delivery costs in KES',
                   'Same-day delivery within Nyeri and Central Kenya',
-                  'Nationwide delivery across Kenya including Nairobi, Mombasa, and Kisumu',
+                  'Nationwide delivery to Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Thika, and Meru',
                   'Flexible order sizes from 1 ton to full truckloads',
-                  'Dedicated customer support via WhatsApp and phone',
-                  'Over 15 years of experience serving Kenyan builders',
+                  'Over 15 years of experience as trusted ballast suppliers in Kenya',
                 ].map((item, idx) => (
                   <li key={idx} style={{
                     display: 'flex',

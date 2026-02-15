@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    document.title = 'Contact Kuri Investments | Stone Crushing Company in Nyeri, Kenya';
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +21,7 @@ function Contact() {
       <div className="page-hero">
         <div className="container">
           <h1>Contact <span className="section-accent">Us</span></h1>
-          <p>Get in touch with our team for orders, quotes, or any questions</p>
+          <p>Contact a reliable stone crushing company in Kenya for orders, quotes, or any questions about our aggregates</p>
         </div>
       </div>
 

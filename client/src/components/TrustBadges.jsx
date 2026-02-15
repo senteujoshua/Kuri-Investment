@@ -3,22 +3,22 @@ function TrustBadges() {
     {
       icon: '\u{1F3C6}',
       title: 'Licensed Quarry',
-      description: 'Fully licensed and compliant with Kenyan mining regulations',
+      description: 'Fully licensed stone crushing company in Kigango, Nyeri — compliant with all Kenyan mining regulations',
     },
     {
       icon: '\u2705',
       title: 'Quality Certified',
-      description: 'Materials tested and certified to meet construction standards',
+      description: 'Premium-grade 3/4 and 3/8 aggregates tested and certified to meet Kenyan construction standards',
     },
     {
       icon: '\u{1F4AA}',
       title: '15+ Years Experience',
-      description: 'Trusted by contractors and builders across Kenya since 2009',
+      description: 'Trusted ballast and aggregate suppliers serving contractors and builders across Kenya since 2009',
     },
     {
       icon: '\u{1F69A}',
       title: 'Nationwide Delivery',
-      description: 'Reliable delivery across Kenya from our Kigango, Nyeri quarry',
+      description: 'Reliable aggregate delivery to Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Thika, Meru, and all of Kenya',
     },
   ];
 

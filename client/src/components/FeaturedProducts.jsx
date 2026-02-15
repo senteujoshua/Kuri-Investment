@@ -20,10 +20,10 @@ function FeaturedProducts() {
     <section className="section texture-bg">
       <div className="container">
         <h2 className="section-title">
-          Our <span className="section-accent">Products</span>
+          Construction <span className="section-accent">Aggregates</span> &amp; Ballast
         </h2>
         <p className="section-subtitle">
-          Premium crushed stone, ballast, hardcore, and quarry dust from Kigango, Nyeri
+          Premium 3/4 and 3/8 crushed stone, ballast, hardcore, and quarry dust — supplied from our quarry in Kigango, Nyeri
         </p>
 
         {loading ? (

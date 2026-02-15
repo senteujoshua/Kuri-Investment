@@ -1,10 +1,16 @@
+import { useEffect } from 'react';
+
 function About() {
+  useEffect(() => {
+    document.title = 'About Kuri Investments | Leading Quarry & Aggregate Supplier in Nyeri, Kenya';
+  }, []);
+
   return (
     <>
       <div className="page-hero">
         <div className="container">
           <h1>About <span className="section-accent">Kuri Investments</span></h1>
-          <p>Building Kenya&apos;s future with quality construction materials since 2009</p>
+          <p>Leading quarry and aggregate supplier in Kigango, Nyeri — building Kenya since 2009</p>
         </div>
       </div>
 
@@ -14,22 +20,22 @@ function About() {
             <div className="about-text">
               <h2>Our <span className="section-accent">Story</span></h2>
               <p>
-                Kuri Investments has been at the forefront of the quarry and aggregates
-                industry for over 15 years. Founded in 2009 and based in Kigango, Nyeri,
-                we started with a vision to provide high-quality construction materials
-                to builders across Kenya.
+                Kuri Investments is a leading stone crushing company in Kenya, proudly based
+                in Kigango, Nyeri. Since 2009, we have been supplying premium-grade 3/4 and
+                3/8 aggregates, ballast, hardcore, and quarry dust to construction projects
+                across the country.
               </p>
               <p>
-                Our stone crushing plant produces a full range of aggregates including
-                3/4 inch (20mm) and 3/8 inch (10mm) crushed stone, ballast, hardcore,
-                and quarry dust. Every batch is carefully processed to meet construction
-                standards.
+                Our modern stone crushing plant produces a full range of construction aggregates
+                — from fine 3/8 inch (10mm) crushed stone for concrete slabs and finishing work,
+                to heavy-duty ballast for foundations and road construction. Every batch is
+                carefully processed, graded, and tested to meet Kenyan construction standards.
               </p>
               <p>
-                From small residential projects to large-scale commercial and infrastructure
-                developments, we serve contractors, builders, and homeowners across Kenya
-                with the same commitment to quality and reliability. Our quarry operations
-                are fully licensed and compliant with all Kenyan mining regulations.
+                From residential builds in Nyeri to large-scale infrastructure projects in Nairobi,
+                Mombasa, and beyond, we are trusted ballast and aggregate suppliers serving
+                contractors, builders, and homeowners across Kenya. Our quarry operations are
+                fully licensed and compliant with all Kenyan mining regulations.
               </p>
             </div>
             <div className="about-image">
@@ -50,17 +56,17 @@ function About() {
                 {
                   icon: '\u{1F48E}',
                   title: 'Quality First',
-                  desc: 'Every batch of material is processed and graded to ensure it meets construction standards. We never compromise on quality.',
+                  desc: 'Supplying strong and durable building aggregates — every batch of 3/4 and 3/8 crushed stone is processed and tested to meet construction standards.',
                 },
                 {
                   icon: '\u{1F91D}',
                   title: 'Customer Trust',
-                  desc: 'We build lasting relationships with our customers through transparency, fair pricing, and reliable delivery across Kenya.',
+                  desc: 'Offering affordable pricing for bulk aggregate orders across Kenya with transparent delivery costs and reliable service.',
                 },
                 {
                   icon: '\u{1F331}',
                   title: 'Sustainability',
-                  desc: 'We operate responsibly, rehabilitating quarried land and minimizing our environmental impact in the Nyeri region.',
+                  desc: 'Operating responsibly in Kigango, Nyeri — rehabilitating quarried land and minimizing our environmental impact.',
                 },
               ].map((value, idx) => (
                 <div key={idx} style={{
