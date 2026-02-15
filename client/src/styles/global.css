@@ -1233,43 +1233,58 @@ tbody tr:hover {
 
 .contact-info-item {
   display: flex;
+  align-items: center;
   gap: 16px;
-  margin-bottom: 24px;
-  padding: 16px;
-  border-radius: var(--radius);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-dark-3);
   transition: background var(--transition-fast);
 }
 
+.contact-info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.contact-info-item:first-child {
+  padding-top: 0;
+}
+
 .contact-info-item:hover {
-  background: rgba(245, 166, 35, 0.04);
+  background: transparent;
 }
 
 .contact-info-icon {
-  font-size: 1.5rem;
-  width: 50px;
-  height: 50px;
+  font-size: 1.3rem;
+  width: 46px;
+  height: 46px;
   background: rgba(245, 166, 35, 0.1);
-  border: 1px solid rgba(245, 166, 35, 0.15);
-  border-radius: var(--radius);
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform var(--transition-spring);
+  transition: transform var(--transition-spring), background 0.2s;
 }
 
 .contact-info-item:hover .contact-info-icon {
-  transform: scale(1.08);
+  transform: scale(1.1);
+  background: rgba(245, 166, 35, 0.15);
 }
 
 .contact-info-item h4 {
-  font-size: 1rem;
-  margin-bottom: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 2px;
 }
 
 .contact-info-item p {
   color: var(--color-gray);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+}
+
+.contact-info-item a:hover {
+  color: var(--color-orange) !important;
 }
 
 @media (max-width: 768px) {
@@ -1687,8 +1702,11 @@ tbody tr:hover {
   .order-item-actions { width: 100%; justify-content: space-between; }
 
   /* Contact */
-  .contact-info-item { padding: 12px; flex-direction: column; text-align: center; align-items: center; }
-  .contact-info-icon { margin-bottom: 8px; }
+  .contact-grid { padding: 30px 0; gap: 20px; }
+  .contact-info-item { padding: 14px 0; gap: 14px; }
+  .contact-info-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+  .contact-info-item h4 { font-size: 0.9rem; }
+  .contact-info-item p { font-size: 0.85rem; }
 
   /* About */
   .about-image { height: 250px; font-size: 3rem; }
