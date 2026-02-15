@@ -6,7 +6,7 @@ const { JWT_SECRET } = require('../middleware/auth');
 
 module.exports = function (db) {
   // POST /api/auth/login
-  router.post('/login', (req, res) => {
+  router.post('/login', async (req, res) => {
     try {
       const { username, password } = req.body;
 
@@ -14,7 +14,7 @@ module.exports = function (db) {
         return res.status(400).json({ error: 'Username and password are required.' });
       }
 
-      const user = db.prepare('SELECT * FROM admin_users WHERE username = ?').get(username);
+      const user = await db.prepare('SELECT * FROM admin_users WHERE username = ?').get(username);
       if (!user) {
         return res.status(401).json({ error: 'Invalid credentials.' });
       }

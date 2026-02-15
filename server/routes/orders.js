@@ -5,7 +5,7 @@ const { generateWhatsAppOrderLink } = require('../utils/whatsapp');
 
 module.exports = function (db) {
   // POST /api/orders - create a new order
-  router.post('/', (req, res) => {
+  router.post('/', async (req, res) => {
     try {
       const {
         customer_name,
@@ -26,7 +26,7 @@ module.exports = function (db) {
       // Calculate total
       let subtotal = 0;
       for (const item of items) {
-        const product = db.prepare('SELECT * FROM products WHERE id = ?').get(item.product_id);
+        const product = await db.prepare('SELECT * FROM products WHERE id = ?').get(item.product_id);
         if (!product) {
           return res.status(400).json({ error: `Product ID ${item.product_id} not found` });
         }
@@ -35,7 +35,7 @@ module.exports = function (db) {
       const total_cost = subtotal + (delivery_cost || 0);
 
       // Insert order
-      const orderResult = db.prepare(`
+      const orderResult = await db.prepare(`
         INSERT INTO orders (customer_name, customer_phone, customer_email, delivery_address, delivery_lat, delivery_lng, delivery_cost, total_cost, notes)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
       `).run(
@@ -53,16 +53,14 @@ module.exports = function (db) {
       const orderId = orderResult.lastInsertRowid;
 
       // Insert order items
-      const insertItem = db.prepare(`
-        INSERT INTO order_items (order_id, product_id, quantity_tons, price)
-        VALUES (?, ?, ?, ?)
-      `);
-
       const itemDetails = [];
       for (const item of items) {
-        const product = db.prepare('SELECT * FROM products WHERE id = ?').get(item.product_id);
+        const product = await db.prepare('SELECT * FROM products WHERE id = ?').get(item.product_id);
         const price = product.price_per_ton * item.quantity_tons;
-        insertItem.run(orderId, item.product_id, item.quantity_tons, price);
+        await db.prepare(`
+          INSERT INTO order_items (order_id, product_id, quantity_tons, price)
+          VALUES (?, ?, ?, ?)
+        `).run(orderId, item.product_id, item.quantity_tons, price);
         itemDetails.push({
           product_name: product.name,
           quantity_tons: item.quantity_tons,
@@ -70,9 +68,7 @@ module.exports = function (db) {
         });
       }
 
-      db.save();
-
-      const order = db.prepare('SELECT * FROM orders WHERE id = ?').get(orderId);
+      const order = await db.prepare('SELECT * FROM orders WHERE id = ?').get(orderId);
 
       // Send notifications (non-blocking)
       sendOrderNotification(order, itemDetails).catch(console.error);

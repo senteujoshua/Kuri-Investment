@@ -87,29 +87,35 @@ async function seed() {
     },
   ];
 
-  // Insert products
+  // Insert products with upsert
   for (const p of products) {
-    db.prepare(`
-      INSERT OR REPLACE INTO products (name, slug, category, size, use_case, price_per_ton, description, image)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    await db.prepare(`
+      INSERT INTO products (name, slug, category, size, use_case, price_per_ton, description, image)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      ON CONFLICT (slug) DO UPDATE SET
+        name = EXCLUDED.name,
+        category = EXCLUDED.category,
+        size = EXCLUDED.size,
+        use_case = EXCLUDED.use_case,
+        price_per_ton = EXCLUDED.price_per_ton,
+        description = EXCLUDED.description,
+        image = EXCLUDED.image
     `).run(p.name, p.slug, p.category, p.size, p.use_case, p.price_per_ton, p.description, p.image);
   }
 
   // Seed admin user (password: admin123)
   const passwordHash = bcrypt.hashSync('admin123', 10);
-  try {
-    db.prepare(`INSERT INTO admin_users (username, password_hash) VALUES (?, ?)`).run('admin', passwordHash);
-  } catch (e) {
-    // Admin already exists
-  }
-
-  db.save();
+  await db.prepare(`
+    INSERT INTO admin_users (username, password_hash)
+    VALUES ($1, $2)
+    ON CONFLICT (username) DO NOTHING
+  `).run('admin', passwordHash);
 
   console.log('Database seeded successfully!');
   console.log(`- ${products.length} products`);
   console.log('- 1 admin user (admin / admin123)');
 
-  db.close();
+  await db.close();
 }
 
 seed().catch(console.error);

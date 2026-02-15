@@ -1,136 +1,106 @@
-const initSqlJs = require('sql.js');
+const { Pool, types } = require('pg');
 const fs = require('fs');
 const path = require('path');
 
-const DB_PATH = path.join(__dirname, 'kuri.db');
+// Parse PostgreSQL bigint (COUNT) and numeric (SUM/AVG) as JS numbers
+types.setTypeParser(20, parseInt);    // bigint -> int
+types.setTypeParser(1700, parseFloat); // numeric -> float
 
 let db = null;
 
-// Wrapper that provides a better-sqlite3-like synchronous API over sql.js
 class DatabaseWrapper {
-  constructor(sqlDb) {
-    this._db = sqlDb;
+  constructor(pool) {
+    this._pool = pool;
+  }
+
+  // Convert ? placeholders to $1, $2, etc.
+  _convertParams(sql) {
+    let idx = 0;
+    return sql.replace(/\?/g, () => `$${++idx}`);
   }
 
   prepare(sql) {
-    const self = this;
+    const pgSql = this._convertParams(sql);
+    const pool = this._pool;
+
     return {
-      run(...params) {
-        self._db.run(sql, params);
+      async run(...params) {
+        let finalSql = pgSql;
+        const trimmed = pgSql.trim().toUpperCase();
+        // Auto-append RETURNING id to INSERTs so lastInsertRowid works
+        if (trimmed.startsWith('INSERT') && !trimmed.includes('RETURNING')) {
+          finalSql = pgSql + ' RETURNING id';
+        }
+        const result = await pool.query(finalSql, params);
         return {
-          lastInsertRowid: self._db.exec("SELECT last_insert_rowid() as id")[0]?.values[0][0] || 0,
-          changes: self._db.getRowsModified(),
+          lastInsertRowid: result.rows[0]?.id || 0,
+          changes: result.rowCount,
         };
       },
-      get(...params) {
-        const stmt = self._db.prepare(sql);
-        stmt.bind(params);
-        if (stmt.step()) {
-          const cols = stmt.getColumnNames();
-          const vals = stmt.get();
-          stmt.free();
-          const row = {};
-          cols.forEach((col, i) => { row[col] = vals[i]; });
-          return row;
-        }
-        stmt.free();
-        return undefined;
+      async get(...params) {
+        const result = await pool.query(pgSql, params);
+        return result.rows[0] || undefined;
       },
-      all(...params) {
-        const results = [];
-        const stmt = self._db.prepare(sql);
-        stmt.bind(params);
-        while (stmt.step()) {
-          const cols = stmt.getColumnNames();
-          const vals = stmt.get();
-          const row = {};
-          cols.forEach((col, i) => { row[col] = vals[i]; });
-          results.push(row);
-        }
-        stmt.free();
-        return results;
+      async all(...params) {
+        const result = await pool.query(pgSql, params);
+        return result.rows;
       },
     };
   }
 
-  exec(sql) {
-    this._db.run(sql);
+  async exec(sql) {
+    await this._pool.query(sql);
   }
 
-  pragma(str) {
-    try {
-      this._db.run(`PRAGMA ${str}`);
-    } catch (e) {
-      // Ignore pragma errors
-    }
-  }
+  // No-op for PostgreSQL (auto-persists)
+  save() {}
 
-  save() {
-    const data = this._db.export();
-    const buffer = Buffer.from(data);
-    fs.writeFileSync(DB_PATH, buffer);
-  }
-
-  close() {
-    try {
-      this.save();
-    } catch (e) {
-      // Ignore save errors on close
-    }
-    try {
-      this._db.close();
-    } catch (e) {
-      // Ignore close errors
-    }
+  async close() {
+    await this._pool.end();
   }
 
   transaction(fn) {
-    return (...args) => {
-      this._db.run('BEGIN TRANSACTION');
+    const pool = this._pool;
+    return async (...args) => {
+      const client = await pool.connect();
       try {
-        const result = fn(...args);
-        this._db.run('COMMIT');
-        this.save();
+        await client.query('BEGIN');
+        const result = await fn(...args);
+        await client.query('COMMIT');
         return result;
       } catch (e) {
-        this._db.run('ROLLBACK');
+        await client.query('ROLLBACK');
         throw e;
+      } finally {
+        client.release();
       }
     };
   }
 }
 
 async function initDatabase() {
-  const SQL = await initSqlJs();
+  const connectionString = process.env.DATABASE_URL;
 
-  let sqlDb;
-  if (fs.existsSync(DB_PATH)) {
-    const fileBuffer = fs.readFileSync(DB_PATH);
-    sqlDb = new SQL.Database(fileBuffer);
-    console.log('Loaded existing database.');
-  } else {
-    sqlDb = new SQL.Database();
-    console.log('Created new database.');
+  if (!connectionString) {
+    throw new Error('DATABASE_URL environment variable is required');
   }
 
-  db = new DatabaseWrapper(sqlDb);
+  const pool = new Pool({
+    connectionString,
+    ssl: { rejectUnauthorized: false },
+  });
+
+  // Test connection
+  const client = await pool.connect();
+  console.log('Connected to PostgreSQL database.');
+  client.release();
+
+  db = new DatabaseWrapper(pool);
 
   // Run schema
   const schema = fs.readFileSync(path.join(__dirname, 'schema.sql'), 'utf8');
-  // Execute each statement separately
-  const statements = schema.split(';').filter((s) => s.trim());
-  for (const stmt of statements) {
-    try {
-      db._db.run(stmt + ';');
-    } catch (e) {
-      // Table may already exist
-    }
-  }
-
-  // Auto-save periodically
-  setInterval(() => {
-    if (db) db.save();
-  }, 30000);
+  await pool.query(schema);
+  console.log('Schema applied.');
 
   return db;
 }
